@@ -13,15 +13,23 @@ const DefaultTemplate: Story<InputWithLabelProps> = (args) => {
     return <InputWithLabel {...args} />;
 };
 
-const InputWithLabelArgs: InputWithLabelProps = { id: 'name', label: 'Name', placeholder: 'Jim Halpert' };
-export const Default = DefaultTemplate.bind({});
-Default.args = InputWithLabelArgs;
-Default.storyName = 'InputWithLabel';
-Default.play = async ({ canvasElement }) => {
+const InputWithLabelArgs: InputWithLabelProps = {
+    id: 'email',
+    label: 'Email',
+    placeholder: 'you@example.com',
+    type: 'email',
+};
+
+export const InputWithLabelStory = DefaultTemplate.bind({});
+
+InputWithLabelStory.args = InputWithLabelArgs;
+InputWithLabelStory.storyName = 'Input with label';
+InputWithLabelStory.play = async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const field = canvas.getByLabelText(InputWithLabelArgs.label);
-    const value = 'Dwight Schrute';
+    const value = 'dwight.schrute@theoffice.com';
 
     await userEvent.type(field, value);
+
     await expect(field).toHaveValue(value);
 };

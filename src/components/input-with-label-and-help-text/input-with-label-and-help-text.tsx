@@ -1,10 +1,6 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
 
-export type InputWithLabelAndHelpTextProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children'> & {
-    id: string;
-    label: string;
-    help: string;
-};
+export type InputWithLabelAndHelpTextProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children'> & { id: string; label: string; help: string };
 export type InputWithLabelAndHelpTextRef = HTMLInputElement;
 
 const InputWithLabelAndHelpText = forwardRef<InputWithLabelAndHelpTextRef, InputWithLabelAndHelpTextProps>(

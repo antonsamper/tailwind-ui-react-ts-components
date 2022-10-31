@@ -3,7 +3,7 @@ import { forwardRef, InputHTMLAttributes } from 'react';
 export type InputWithLabelProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children'> & { id: string; label: string };
 export type InputWithLabelRef = HTMLInputElement;
 
-const InputWithLabel = forwardRef<InputWithLabelRef, InputWithLabelProps>(({ className, id, label, type, ...props }, ref) => {
+export const InputWithLabel = forwardRef<InputWithLabelRef, InputWithLabelProps>(({ className, id, label, type, ...props }, ref) => {
     return (
         <div>
             <label htmlFor={id} className="block text-sm font-medium text-gray-700">
@@ -24,5 +24,3 @@ const InputWithLabel = forwardRef<InputWithLabelRef, InputWithLabelProps>(({ cla
 });
 
 InputWithLabel.displayName = 'InputWithLabel';
-
-export { InputWithLabel };

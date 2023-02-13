@@ -2,8 +2,7 @@
     "env": {
         "browser": true
     },
-    "extends": ["react-app",
-        "react-app/jest","eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
     "globals": {
         "module": true
     },
@@ -21,7 +20,7 @@
         {
             "files": ["*.stories.tsx"],
             "rules": {
-                "import/no-default-export": 0,
+                "import/no-default-export": 0
             }
         }
     ],

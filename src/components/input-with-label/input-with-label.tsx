@@ -1,22 +1,23 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
 
-export type InputWithLabelProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children'> & { id: string; label: string };
-export type InputWithLabelRef = HTMLInputElement;
+export type InputWithLabelProps = InputHTMLAttributes<HTMLInputElement> & { defaultValue?: string; name: string; label: string };
 
-export const InputWithLabel = forwardRef<InputWithLabelRef, InputWithLabelProps>(({ className, id, label, type, ...props }, ref) => {
+export const InputWithLabel = forwardRef<HTMLInputElement, InputWithLabelProps>((props, ref) => {
+    const { className, name, label, type, ...attrs } = props;
+
     return (
         <div>
-            <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+            <label htmlFor={name} className="block text-sm font-medium text-gray-700">
                 {label}
             </label>
             <div className="mt-1">
                 <input
-                    id={id}
+                    id={name}
                     className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${className}`}
                     data-testid="input-with-label"
-                    ref={ref}
                     type={type || 'text'}
-                    {...props}
+                    ref={ref}
+                    {...attrs}
                 />
             </div>
         </div>

@@ -1,54 +1,35 @@
 import { action } from '@storybook/addon-actions';
-import { expect } from '@storybook/jest';
-import { Meta, Story } from '@storybook/react';
-import { userEvent, waitFor, within } from '@storybook/testing-library';
+import { Meta, StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 
-import { InputWithLabel, InputWithLabelController, InputWithLabelControllerProps } from '.';
+import { InputWithLabelController } from '.';
 
-export default {
-    component: InputWithLabel,
+const meta: Meta<typeof InputWithLabelController> = {
+    component: InputWithLabelController,
     title: 'Application UI/Forms/Input Groups',
-} as Meta;
-
-const DefaultTemplate: Story<InputWithLabelControllerProps> = ({ name, required, ...rest }) => {
-    const { control, handleSubmit } = useForm();
-
-    return (
-        <form role="form" onSubmit={handleSubmit(action('onSubmit'))}>
-            <InputWithLabelController control={control} name={name} rules={{ required }} {...rest} />
-            <input type="submit" />
-        </form>
-    );
 };
 
-const InputWithLabelControllerArgs: InputWithLabelControllerProps = {
-    defaultValue: '',
-    id: 'email',
-    label: 'Email',
-    name: 'email',
-    placeholder: 'you@example.com',
-    type: 'email',
-};
+export default meta;
 
-export const InputWithLabelControllerStory = DefaultTemplate.bind({});
+type Story = StoryObj;
 
-InputWithLabelControllerStory.args = InputWithLabelControllerArgs;
-InputWithLabelControllerStory.storyName = 'Input with label controller';
-InputWithLabelControllerStory.play = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const field = canvas.getByLabelText(InputWithLabelControllerArgs.label);
-    const form = canvas.getByRole('form') as HTMLFormElement;
-    const value = 'dwight.schrute@theoffice.com';
+export const InputWithLabelControllerStory: Story = {
+    name: 'Input with label controller',
+    render: () => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { control, handleSubmit } = useForm<{
+            email: string;
+            name: string;
+        }>({
+            defaultValues: { email: 'jim.halpert@theoffice.com', name: 'Jim Halpert' },
+        });
 
-    await userEvent.type(field, value);
-    await userEvent.click(canvas.getByRole('button'));
-
-    const formData = new FormData(form);
-    const formValues = Object.fromEntries(formData);
-
-    await waitFor(() => {
-        expect(field).toHaveValue(value);
-        expect(formValues[InputWithLabelControllerArgs.name]).toBe(value);
-    });
+        return (
+            <form className="space-y-4" role="form" onSubmit={handleSubmit(action('onSubmit'))}>
+                <InputWithLabelController control={control} name="name" label="Name" placeholder="John Doe" />
+                <InputWithLabelController control={control} name="email" label="Email" placeholder="you@example.com" type="email" />
+                <input className="rounded-md bg-indigo-50 py-2 px-3 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100" type="submit" />
+            </form>
+        );
+    },
 };

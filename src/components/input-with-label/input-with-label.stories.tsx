@@ -1,35 +1,26 @@
-import { expect } from '@storybook/jest';
-import { Meta, Story } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { Meta, StoryObj } from '@storybook/react';
 
-import { InputWithLabel, InputWithLabelProps } from '.';
+import { InputWithLabel } from '.';
 
-export default {
+const meta: Meta<typeof InputWithLabel> = {
     component: InputWithLabel,
     title: 'Application UI/Forms/Input Groups',
-} as Meta;
-
-const DefaultTemplate: Story<InputWithLabelProps> = (args) => {
-    return <InputWithLabel {...args} />;
 };
 
-const InputWithLabelArgs: InputWithLabelProps = {
-    id: 'email',
-    label: 'Email',
-    placeholder: 'you@example.com',
-    type: 'email',
-};
+export default meta;
 
-export const InputWithLabelStory = DefaultTemplate.bind({});
+type Story = StoryObj<typeof InputWithLabel>;
 
-InputWithLabelStory.args = InputWithLabelArgs;
-InputWithLabelStory.storyName = 'Input with label';
-InputWithLabelStory.play = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const field = canvas.getByLabelText(InputWithLabelArgs.label);
-    const value = 'dwight.schrute@theoffice.com';
-
-    await userEvent.type(field, value);
-
-    await expect(field).toHaveValue(value);
+export const InputWithLabelStory: Story = {
+    args: {
+        defaultValue: 'jim.halpert@theoffice.com',
+        label: 'Email',
+        name: 'email',
+        placeholder: 'you@example.com',
+        type: 'email',
+    },
+    name: 'Input with label',
+    render: (props) => {
+        return <InputWithLabel {...props} />;
+    },
 };

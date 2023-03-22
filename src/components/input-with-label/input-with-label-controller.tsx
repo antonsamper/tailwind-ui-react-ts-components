@@ -1,25 +1,15 @@
-import { FunctionComponent } from 'react';
-import { Controller } from 'react-hook-form';
-import { UseControllerProps } from 'react-hook-form/dist/types/controller';
+import React from 'react';
+import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
 import { InputWithLabel, InputWithLabelProps } from '.';
 
-export type InputWithLabelControllerProps = InputWithLabelProps & UseControllerProps;
+export type InputWithLabelControllerProps<T extends FieldValues = FieldValues> = InputWithLabelProps & UseControllerProps<T>;
 
-export const InputWithLabelController: FunctionComponent<InputWithLabelControllerProps> = (props) => {
-    const { control, defaultValue, name, rules, ...rest } = props;
+export const InputWithLabelController = <T extends FieldValues>(props: InputWithLabelControllerProps<T>) => {
+    const { control, defaultValue, name, ...attrs } = props;
+    const { field } = useController({ control, defaultValue, name });
 
-    return (
-        <Controller
-            control={control}
-            name={name}
-            rules={rules}
-            defaultValue={defaultValue}
-            render={({ field }) => {
-                return <InputWithLabel {...field} {...rest} />;
-            }}
-        />
-    );
+    return <InputWithLabel {...attrs} {...field} />;
 };
 
 InputWithLabelController.displayName = 'InputWithLabelController';

@@ -11,7 +11,6 @@
     "@babel/core": "^7.20.12",
     "@storybook/addon-actions": "^7.0.0-beta.64",
     "@storybook/addon-essentials": "^7.0.0-beta.64",
-    "@storybook/addon-interactions": "^7.0.0-beta.64",
     "@storybook/addon-links": "^7.0.0-beta.64",
     "@storybook/react": "^7.0.0-beta.64",
     "@storybook/react-vite": "^7.0.0-beta.64",

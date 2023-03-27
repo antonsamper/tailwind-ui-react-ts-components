@@ -9,6 +9,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.16",
     "@storybook/addon-actions": "^7.0.0-beta.64",
     "@storybook/addon-essentials": "^7.0.0-beta.64",
     "@storybook/addon-links": "^7.0.0-beta.64",
@@ -24,6 +26,7 @@
     "autoprefixer": "^10.4.13",
     "babel-loader": "^9.1.2",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "clsx": "^1.2.1",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",

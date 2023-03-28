@@ -3,14 +3,17 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { Fragment, useState } from 'react';
 
-export type SelectMenuProps = { label: string; onChange?: (value: string) => void; options: string[]; value?: string };
+export type SelectMenuProps = { label: string; onChange?: (value?: string) => void; options: string[]; value?: string };
 
 export const SelectMenu = (props: SelectMenuProps) => {
-    const { label, onChange, options, value = 'Select an option' } = props;
+    const promptValue = 'Select an option';
+    const { label, onChange, options, value = promptValue } = props;
     const [selected, setSelected] = useState(value);
 
-    const onOptionChange = (value: string) => {
-        setSelected(value);
+    const onOptionChange = (option: string) => {
+        const value = option === promptValue ? undefined : option;
+
+        setSelected(option);
         onChange?.(value);
     };
 
@@ -29,32 +32,44 @@ export const SelectMenu = (props: SelectMenuProps) => {
 
                         <Transition show={open} as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
                             <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {['Select an option', ...options].map((option, index) => (
-                                    <Listbox.Option
-                                        key={index}
-                                        className={({ active }) =>
-                                            clsx(active ? 'bg-indigo-600 text-white' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-8 pr-4')
-                                        }
-                                        value={option}
-                                    >
-                                        {({ selected, active }) => (
-                                            <>
-                                                <span className={clsx(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>{option}</span>
-
-                                                {selected ? (
+                                {[promptValue, ...options].map((option, index) => {
+                                    return (
+                                        <Listbox.Option
+                                            key={index}
+                                            className={({ active }) =>
+                                                clsx('relative cursor-default select-none py-2 pl-8 pr-4', {
+                                                    'bg-indigo-600 text-white': active,
+                                                    'text-gray-900': !active,
+                                                })
+                                            }
+                                            value={option}
+                                        >
+                                            {({ selected, active }) => (
+                                                <>
                                                     <span
-                                                        className={clsx(
-                                                            active ? 'text-white' : 'text-indigo-600',
-                                                            'absolute inset-y-0 left-0 flex items-center pl-1.5',
-                                                        )}
+                                                        className={clsx('block cursor-pointer truncate', {
+                                                            'font-normal': !selected,
+                                                            'font-semibold': selected,
+                                                        })}
                                                     >
-                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                        {option}
                                                     </span>
-                                                ) : null}
-                                            </>
-                                        )}
-                                    </Listbox.Option>
-                                ))}
+
+                                                    {selected ? (
+                                                        <span
+                                                            className={clsx(
+                                                                active ? 'text-white' : 'text-indigo-600',
+                                                                'absolute inset-y-0 left-0 flex items-center pl-1.5',
+                                                            )}
+                                                        >
+                                                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                        </span>
+                                                    ) : null}
+                                                </>
+                                            )}
+                                        </Listbox.Option>
+                                    );
+                                })}
                             </Listbox.Options>
                         </Transition>
                     </div>

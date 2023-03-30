@@ -6,7 +6,7 @@ export const InputWithLabel = forwardRef<HTMLInputElement, InputWithLabelProps>(
     const { className, name, label, type, ...attrs } = props;
 
     return (
-        <div>
+        <div data-testid="component-input-with-label">
             <label htmlFor={name} className="block text-sm font-medium text-gray-700">
                 {label}
             </label>
@@ -14,7 +14,6 @@ export const InputWithLabel = forwardRef<HTMLInputElement, InputWithLabelProps>(
                 <input
                     id={name}
                     className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${className}`}
-                    data-testid="input-with-label"
                     type={type || 'text'}
                     ref={ref}
                     {...attrs}

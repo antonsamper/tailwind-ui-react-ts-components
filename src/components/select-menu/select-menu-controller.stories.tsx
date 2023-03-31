@@ -18,16 +18,21 @@ export const SelectMenuControllerStory: Story = {
     render: () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { control, handleSubmit } = useForm<{ assignee: string; reviewer: string; manager: string }>({
-            defaultValues: { assignee: 'Pam', reviewer: 'Jim' },
+            defaultValues: { assignee: 'pam', reviewer: 'jim' },
         });
-        const options = ['Jim', 'Dwight', 'Pam', 'Michael'];
+        const options = [
+            { label: 'Jim', value: 'jim' },
+            { label: 'Dwight', value: 'dwight' },
+            { label: 'Pam', value: 'pam' },
+            { label: 'Michael', value: 'michael' },
+        ];
 
         return (
             <form className="space-y-4" role="form" onSubmit={handleSubmit(action('onSubmit'))}>
                 <SelectMenuController control={control} name="assignee" label="Assigned to" options={options} />
                 <SelectMenuController control={control} name="reviewer" label="Reviewed by" options={options} />
                 <SelectMenuController control={control} name="manager" label="Manager" options={options} />
-                <button className="rounded-md bg-indigo-50 py-2 px-3 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100" type="submit">
+                <button className="rounded-md bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100" type="submit">
                     Submit
                 </button>
             </form>

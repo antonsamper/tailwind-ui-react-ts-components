@@ -1,9 +1,9 @@
 import { forwardRef, InputHTMLAttributes } from 'react';
 
-export type InputWithLabelProps = InputHTMLAttributes<HTMLInputElement> & { defaultValue?: string; name: string; label: string };
+export type InputWithLabelProperties = InputHTMLAttributes<HTMLInputElement> & { defaultValue?: string; name: string; label: string };
 
-export const InputWithLabel = forwardRef<HTMLInputElement, InputWithLabelProps>((props, ref) => {
-    const { className, name, label, type, ...attrs } = props;
+export const InputWithLabel = forwardRef<HTMLInputElement, InputWithLabelProperties>((properties, reference) => {
+    const { className, name, label, type, ...attributes } = properties;
 
     return (
         <div data-testid="component-input-with-label">
@@ -15,8 +15,8 @@ export const InputWithLabel = forwardRef<HTMLInputElement, InputWithLabelProps>(
                     id={name}
                     className={`block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${className}`}
                     type={type || 'text'}
-                    ref={ref}
-                    {...attrs}
+                    ref={reference}
+                    {...attributes}
                 />
             </div>
         </div>

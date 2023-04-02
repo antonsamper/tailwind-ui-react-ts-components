@@ -22,7 +22,7 @@ export const SelectMenuStory: Story = {
         ],
     },
     name: 'Select menu',
-    render: (props) => {
-        return <SelectMenu {...props} />;
+    render: (properties) => {
+        return <SelectMenu {...properties} />;
     },
 };

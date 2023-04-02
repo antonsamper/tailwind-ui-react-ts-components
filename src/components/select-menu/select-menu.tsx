@@ -4,12 +4,12 @@ import clsx from 'clsx';
 import { forwardRef, Fragment, useState } from 'react';
 
 type SelectMenuOption = { label: string; value?: string };
-export type SelectMenuProps = { label: string; onChange?: (value?: string) => void; options: SelectMenuOption[]; value?: string };
+export type SelectMenuProperties = { label: string; onChange?: (value?: string) => void; options: SelectMenuOption[]; value?: string };
 
 const initialOption: SelectMenuOption = { label: 'Select an option', value: undefined };
 
-export const SelectMenu = forwardRef<HTMLButtonElement, SelectMenuProps>((props, ref) => {
-    const { label, onChange, options, value } = props;
+export const SelectMenu = forwardRef<HTMLButtonElement, SelectMenuProperties>((properties, reference) => {
+    const { label, onChange, options, value } = properties;
     const [selected, setSelected] = useState(
         options.find((option) => {
             return option.value === value;
@@ -29,7 +29,7 @@ export const SelectMenu = forwardRef<HTMLButtonElement, SelectMenuProps>((props,
                         <Listbox.Label className="block text-sm font-medium text-gray-700">{label}</Listbox.Label>
                         <div className="relative mt-1">
                             <Listbox.Button
-                                ref={ref}
+                                ref={reference}
                                 className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             >
                                 <span className="block truncate">{selected.label}</span>
@@ -73,7 +73,7 @@ export const SelectMenu = forwardRef<HTMLButtonElement, SelectMenuProps>((props,
                                                                 >
                                                                     <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                                                 </span>
-                                                            ) : null}
+                                                            ) : undefined}
                                                         </>
                                                     );
                                                 }}

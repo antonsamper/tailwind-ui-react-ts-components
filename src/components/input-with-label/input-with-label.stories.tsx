@@ -20,7 +20,7 @@ export const InputWithLabelStory: Story = {
         type: 'email',
     },
     name: 'Input with label',
-    render: (props) => {
-        return <InputWithLabel {...props} />;
+    render: (properties) => {
+        return <InputWithLabel {...properties} />;
     },
 };

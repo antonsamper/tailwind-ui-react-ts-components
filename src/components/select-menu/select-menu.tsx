@@ -4,15 +4,15 @@ import clsx from 'clsx';
 import { forwardRef, Fragment, useState } from 'react';
 
 type SelectMenuOption = { label: string; value?: string };
-export type SelectMenuProperties = { label: string; onChange?: (value?: string) => void; options: SelectMenuOption[]; value?: string };
+export type SelectMenuProperties = { defaultValue?: string; label: string; onChange?: (value?: string) => void; options: SelectMenuOption[] };
 
 const initialOption: SelectMenuOption = { label: 'Select an option', value: undefined };
 
 export const SelectMenu = forwardRef<HTMLButtonElement, SelectMenuProperties>((properties, reference) => {
-    const { label, onChange, options, value } = properties;
+    const { defaultValue, label, onChange, options } = properties;
     const [selected, setSelected] = useState(
         options.find((option) => {
-            return option.value === value;
+            return option.value === defaultValue;
         }) ?? initialOption,
     );
 

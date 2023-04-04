@@ -7,8 +7,8 @@ import { InputWithLabel } from '.';
 export type InputWithLabelControllerProperties<T extends FieldValues = FieldValues> = InputWithLabelProperties & UseControllerProps<T>;
 
 export const InputWithLabelController = <T extends FieldValues>(properties: InputWithLabelControllerProperties<T>) => {
-    const { control, defaultValue, name, ...attributes } = properties;
-    const { field } = useController({ control, defaultValue, name });
+    const { control, name, ...attributes } = properties;
+    const { field } = useController({ control, name });
 
     return <InputWithLabel {...attributes} {...field} />;
 };

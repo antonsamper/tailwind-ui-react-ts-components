@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "start": "storybook dev -p 6006",
+    "build": "storybook build",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .ts,.tsx src"
   },
   "devDependencies": {

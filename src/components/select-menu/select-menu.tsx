@@ -26,7 +26,7 @@ export const SelectMenu = forwardRef<HTMLButtonElement, SelectMenuProperties>((p
             {({ open }) => {
                 return (
                     <div>
-                        <Listbox.Label className="block text-sm font-medium text-gray-700">{label}</Listbox.Label>
+                        <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">{label}</Listbox.Label>
                         <div className="relative mt-1">
                             <Listbox.Button
                                 ref={reference}

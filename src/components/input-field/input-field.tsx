@@ -9,7 +9,7 @@ type InputFieldProperties<T extends FieldValues = FieldValues> = Omit<
 };
 
 export const InputField = <T extends FieldValues>(properties: InputFieldProperties<T>) => {
-    const { control, name, label, type = 'text', ...attributes } = properties;
+    const { control, label, name, type = 'text', ...attributes } = properties;
     const { field } = useController({ control, name });
 
     return (

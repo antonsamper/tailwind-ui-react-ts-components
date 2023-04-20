@@ -9,9 +9,8 @@ export type SelectMenuControllerProperties<T extends FieldValues = FieldValues> 
 export const SelectMenuController = <T extends FieldValues>(properties: SelectMenuControllerProperties<T>) => {
     const { control, defaultValue, name, ...attributes } = properties;
     const { field } = useController({ control, defaultValue, name });
-    const { onChange, ref, value } = field;
 
-    return <SelectMenu {...attributes} onChange={onChange} ref={ref} value={value} />;
+    return <SelectMenu {...attributes} {...field} />;
 };
 
 SelectMenuController.displayName = 'SelectMenuController';

@@ -1,2 +1,7 @@
-# tailwind-ui-react-ts-components
-Tailwind UI React TypeScript Component Examples
+# Tailwind UI ❤️React Hook Form Components
+
+Tailwind UI inspired components written with React + TypeScript and made to work with React Hook Form.
+
+## Components
+
+* `<InputField />`

@@ -28,14 +28,21 @@ export const SelectMenuControllerStory: Story = {
         ];
 
         return (
-            <form className="space-y-4" role="form" onSubmit={handleSubmit(action('onSubmit'))}>
-                <SelectMenuController control={control} name="assignee" label="Assigned to" options={options} />
-                <SelectMenuController control={control} name="reviewer" label="Reviewed by" options={options} />
-                <SelectMenuController control={control} name="manager" label="Manager" options={options} />
-                <button className="rounded-md bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100" type="submit">
-                    Submit
-                </button>
-            </form>
+            <div className="space-y-6">
+                <div className="border-b border-gray-200 pb-5">
+                    <h3 className="text-base font-semibold leading-6 text-gray-900">Controlled Select Menu</h3>
+                </div>
+                <div>
+                    <form className="space-y-4" role="form" onSubmit={handleSubmit(action('onSubmit'))}>
+                        <SelectMenuController control={control} name="assignee" label="Assigned to" options={options} />
+                        <SelectMenuController control={control} name="reviewer" label="Reviewed by" options={options} />
+                        <SelectMenuController control={control} name="manager" label="Manager" options={options} />
+                        <button className="rounded-md bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100" type="submit">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
         );
     },
 };

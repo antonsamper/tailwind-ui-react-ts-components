@@ -5,3 +5,4 @@ Tailwind UI inspired components written with React + TypeScript and made to work
 ## Components
 
 * `<InputField />`
+* `<SelectMenuField />`

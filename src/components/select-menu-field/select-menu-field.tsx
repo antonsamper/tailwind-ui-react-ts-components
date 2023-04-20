@@ -1,61 +1,53 @@
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
-import { forwardRef, Fragment, useState } from 'react';
+import { ButtonHTMLAttributes, Fragment, useState } from 'react';
+import { ControllerRenderProps, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 
 type SelectMenuOption = { label: string; value?: string };
-export type SelectMenuProperties = {
-    defaultValue?: string;
+
+type SelectMenuFieldProperties<T extends FieldValues = FieldValues> = Omit<
+    ButtonHTMLAttributes<HTMLButtonElement> & UseControllerProps<T>,
+    Exclude<keyof ControllerRenderProps, 'name'> | 'className' | 'defaultChecked' | 'defaultValue' | 'id'
+> & {
     label: string;
-    name: string;
-    onChange?: (value?: string) => void;
     options: SelectMenuOption[];
-    value?: string;
 };
 
 const initialOption: SelectMenuOption = { label: 'Select an option', value: '' };
 
-export const SelectMenu = forwardRef<HTMLButtonElement, Omit<SelectMenuProperties, 'value' | 'onChange'> | Omit<SelectMenuProperties, 'defaultValue'>>(
-    (properties, reference) => {
-        const { defaultValue, label, onChange, options, value, ...attributes } = properties;
-        const [selected, setSelected] = useState(
-            options.find((option) => {
-                return option.value === defaultValue || option.value === value;
-            }) || initialOption,
-        );
-        console.log(selected);
-        const onOptionChange = (option: SelectMenuOption) => {
-            setSelected(option);
-            onChange?.(option === initialOption ? undefined : option.value);
-        };
+export const SelectMenuField = <T extends FieldValues>(properties: SelectMenuFieldProperties<T>) => {
+    const { control, label, name, options, ...attributes } = properties;
 
-        return (
-            <Listbox
-                data-testid="component-select-menu"
-                defaultValue={'defaultValue' in properties ? selected : undefined}
-                onChange={onChange ? onOptionChange : undefined}
-                value={'value' in properties ? selected : undefined}
-                {...attributes}
-            >
+    const { field } = useController({ control, name });
+    const [selected, setSelected] = useState(
+        options.find((option) => {
+            return option.value === field.value;
+        }) || initialOption,
+    );
+
+    const onOptionChange = (option: SelectMenuOption) => {
+        setSelected(option);
+
+        field.onChange(option === initialOption ? undefined : option.value);
+    };
+
+    return (
+        <div data-testid="component-select-menu-field">
+            <Listbox onChange={onOptionChange} value={selected} {...attributes}>
                 {({ open }) => {
                     return (
                         <div>
                             <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">{label}</Listbox.Label>
                             <div className="relative mt-1">
                                 <Listbox.Button
-                                    ref={reference}
+                                    ref={field.ref}
                                     className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 >
-                                    {({ value }) => {
-                                        return (
-                                            <>
-                                                <span className="block truncate">{onChange ? selected.label : value.label}</span>
-                                                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                                                    <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                                </span>
-                                            </>
-                                        );
-                                    }}
+                                    <span className="block truncate">{selected.label}</span>
+                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                                        <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                                    </span>
                                 </Listbox.Button>
 
                                 <Transition show={open} as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
@@ -107,8 +99,6 @@ export const SelectMenu = forwardRef<HTMLButtonElement, Omit<SelectMenuPropertie
                     );
                 }}
             </Listbox>
-        );
-    },
-);
-
-SelectMenu.displayName = 'SelectMenu';
+        </div>
+    );
+};

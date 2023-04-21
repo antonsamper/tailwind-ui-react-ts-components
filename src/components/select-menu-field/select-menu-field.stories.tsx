@@ -13,7 +13,7 @@ export default meta;
 
 type Story = StoryObj<typeof SelectMenuField>;
 
-export const SelectMenuControllerStory: Story = {
+export const SelectMenuFieldStory: Story = {
     name: 'Default',
     render: () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks

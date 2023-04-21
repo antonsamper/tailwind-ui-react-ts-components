@@ -13,7 +13,7 @@ export default meta;
 
 type Story = StoryObj<typeof InputField>;
 
-export const InputStory: Story = {
+export const InputFieldStory: Story = {
     name: 'Default',
     render: () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks

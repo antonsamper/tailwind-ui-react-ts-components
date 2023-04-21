@@ -9,9 +9,8 @@ type InputFieldProperties<T extends FieldValues = FieldValues> = Omit<
 };
 
 export const InputField = <T extends FieldValues>(properties: InputFieldProperties<T>) => {
-    const { control, label, name, type = 'text', ...attributes } = properties;
-
-    const { field } = useController({ control, name });
+    const { control, label, name, rules, type = 'text', ...attributes } = properties;
+    const { field, fieldState } = useController({ control, name, rules });
 
     return (
         <div data-testid="component-input-field">
@@ -27,6 +26,11 @@ export const InputField = <T extends FieldValues>(properties: InputFieldProperti
                     {...attributes}
                 />
             </div>
+            {fieldState.error && (
+                <p className="mt-2 text-sm text-red-600" id="email-error">
+                    {fieldState.error.message}
+                </p>
+            )}
         </div>
     );
 };

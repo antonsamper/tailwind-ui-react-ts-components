@@ -1,4 +1,4 @@
-# Tailwind UI ❤️React Hook Form Components
+# TailwindCSS + TailwindUI ❤️ React Hook Form Components
 
 Tailwind UI inspired components written with React + TypeScript and made to work with React Hook Form.
 

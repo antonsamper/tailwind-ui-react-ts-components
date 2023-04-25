@@ -27,7 +27,7 @@ export const InputFieldStory: Story = {
                     <h3 className="text-base font-semibold leading-6 text-gray-900">InputField integration with React Hook Form</h3>
                 </div>
                 <div>
-                    <form className="space-y-4" role="form" onSubmit={handleSubmit(action('onSubmit'))}>
+                    <form className="space-y-4" onSubmit={handleSubmit(action('onSubmit'))}>
                         <InputField control={control} name="name" label="Name" placeholder="John Doe" />
                         <InputField control={control} name="email" label="Email" placeholder="you@example.com" type="email" />
                         <InputField

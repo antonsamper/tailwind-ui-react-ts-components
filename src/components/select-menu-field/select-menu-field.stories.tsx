@@ -34,7 +34,7 @@ export const SelectMenuFieldStory: Story = {
                     <h3 className="text-base font-semibold leading-6 text-gray-900">SelectMenuField integration with React Hook Form</h3>
                 </div>
                 <div>
-                    <form className="space-y-4" role="form" onSubmit={handleSubmit(action('onSubmit'))}>
+                    <form className="space-y-4" onSubmit={handleSubmit(action('onSubmit'))}>
                         <SelectMenuField control={control} name="assignee" label="Assigned to" options={options} />
                         <SelectMenuField control={control} name="reviewer" label="Reviewed by" options={options} />
                         <SelectMenuField control={control} name="manager" label="Manager" options={options} />

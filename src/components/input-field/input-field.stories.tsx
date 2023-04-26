@@ -18,7 +18,7 @@ export const InputFieldStory: Story = {
     render: () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { control, handleSubmit } = useForm<{ email: string; job: string; name: string; nickname: string }>({
-            defaultValues: { email: 'jim.halpert@theoffice.com', job: '', name: 'Jim Halpert', nickname: '' },
+            defaultValues: { email: 'jim.halpert@theoffice.com', job: '', name: 'Jim Halpert', nickname: 'Jim' },
         });
 
         return (

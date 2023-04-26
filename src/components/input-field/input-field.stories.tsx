@@ -17,8 +17,8 @@ export const InputFieldStory: Story = {
     name: 'Default',
     render: () => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { control, handleSubmit } = useForm<{ email: string; job: string; name: string; nickname: string }>({
-            defaultValues: { email: 'jim.halpert@theoffice.com', job: '', name: 'Jim Halpert', nickname: 'Jim' },
+        const { control, handleSubmit, watch } = useForm<{ email: string; firstname: string; job: string; middlename: string }>({
+            defaultValues: { email: 'jim.halpert@theoffice.com', firstname: 'Jim Halpert', job: '', middlename: '' },
         });
 
         return (
@@ -28,8 +28,8 @@ export const InputFieldStory: Story = {
                 </div>
                 <div>
                     <form className="space-y-4" onSubmit={handleSubmit(action('onSubmit'))}>
-                        <InputField control={control} name="name" label="Name" placeholder="John Doe" />
-                        <InputField control={control} name="nickname" label="Nickname" placeholder="Cool John" disabled={true} />
+                        <InputField control={control} name="firstname" label="First Name" placeholder="John Doe" />
+                        <InputField control={control} name="middlename" label="Middle Name" placeholder="Patrick" disabled={watch('firstname') === ''} />
                         <InputField control={control} name="email" label="Email" placeholder="you@example.com" type="email" />
                         <InputField
                             control={control}

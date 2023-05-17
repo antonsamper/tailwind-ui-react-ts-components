@@ -23,6 +23,6 @@ export const decorators = [
   }),
 ];
 
-// Set additional theming classes
+// Set additional TailwindCSS theming classes
 document.querySelector('html').classList.add('h-full');
 document.body.classList.add('min-h-screen', 'bg-white', 'dark:bg-slate-900');

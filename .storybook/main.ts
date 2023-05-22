@@ -1,5 +1,5 @@
 module.exports = {
-  addons: ['@storybook/addon-a11y', '@storybook/addon-essentials', '@storybook/addon-links', '@storybook/addon-styling'],
+  addons: ['@storybook/addon-a11y', '@storybook/addon-essentials', '@storybook/addon-links', '@storybook/addon-storysource', '@storybook/addon-styling'],
   features: {
     storyStoreV7: true,
   },

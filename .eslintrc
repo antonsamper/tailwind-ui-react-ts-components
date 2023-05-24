@@ -24,7 +24,7 @@
             }
         }
     ],
-    "plugins": ["@typescript-eslint", "import", "simple-import-sort", "react-hooks"],
+    "plugins": ["@typescript-eslint", "import", "simple-import-sort", "react-hooks", "typescript-sort-keys"],
     "root": true,
     "rules": {
         "@typescript-eslint/interface-name-prefix": 0,
@@ -41,7 +41,9 @@
                 "caseSensitive": true,
                 "natural": true
             }
-        ]
+        ],
+        "typescript-sort-keys/interface": "error",
+        "typescript-sort-keys/string-enum": "error"
     },
     "settings": {
         "react": {

@@ -2,13 +2,17 @@
     "env": {
         "browser": true
     },
-    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "plugin:unicorn/recommended"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended",
+        "plugin:prettier/recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:unicorn/recommended"
+    ],
     "globals": {
         "module": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 6
     },
     "overrides": [
         {
@@ -24,6 +28,10 @@
             }
         }
     ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
     "plugins": ["@typescript-eslint", "import", "simple-import-sort", "react-hooks", "typescript-sort-keys"],
     "root": true,
     "rules": {
@@ -33,6 +41,7 @@
         "import/no-default-export": ["error"],
         "react-hooks/exhaustive-deps": "error",
         "react-hooks/rules-of-hooks": "error",
+        "react/jsx-sort-props": "error",
         "simple-import-sort/imports": ["error"],
         "sort-keys": [
             "error",

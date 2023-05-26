@@ -17,7 +17,7 @@ export const InputField = <T extends FieldValues>(properties: InputFieldProperti
 
     return (
         <div data-testid="component-input-field">
-            <label htmlFor={`component-input-field-${field.name}`} className="block text-sm font-medium leading-6 text-gray-900">
+            <label className="block text-sm font-medium leading-6 text-gray-900" htmlFor={`component-input-field-${field.name}`}>
                 {label}
             </label>
             <div className="relative mt-1">

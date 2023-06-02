@@ -33,16 +33,19 @@ export const InputFieldStory: Story = {
 
         return (
             <div className="space-y-6">
-                <div className="border-b border-gray-200 pb-5">
-                    <h3 className="text-base font-semibold leading-6 text-gray-900">InputField integration with React Hook Form</h3>
+                <div className="border-b border-gray-200 pb-5 dark:border-slate-200">
+                    <h3 className="text-base font-semibold leading-6 text-gray-900 dark:text-slate-200">InputField integration with React Hook Form</h3>
                 </div>
                 <div>
                     <form className="space-y-4" onSubmit={handleSubmit(action('onSubmit'))}>
-                        <InputField control={control} name="firstname" label="First Name" placeholder="John Doe" />
-                        <InputField control={control} name="middlename" label="Middle Name" placeholder="Patrick" disabled={watch('firstname') === ''} />
-                        <InputField control={control} name="email" label="Email" placeholder="you@example.com" type="email" />
-                        <InputField control={control} name="job" label="Job Title" placeholder="Administrator" />
-                        <button className="rounded-md bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100" type="submit">
+                        <InputField control={control} label="First Name" name="firstname" placeholder="John Doe" />
+                        <InputField control={control} disabled={watch('firstname') === ''} label="Middle Name" name="middlename" placeholder="Patrick" />
+                        <InputField control={control} label="Email" name="email" placeholder="you@example.com" type="email" />
+                        <InputField control={control} label="Job Title" name="job" placeholder="Administrator" />
+                        <button
+                            className="dark:border-1 rounded-md bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100 dark:bg-gray-700 dark:text-slate-200 dark:hover:bg-gray-600/30"
+                            type="submit"
+                        >
                             Submit
                         </button>
                     </form>

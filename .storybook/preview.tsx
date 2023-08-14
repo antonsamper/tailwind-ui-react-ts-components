@@ -25,4 +25,4 @@ export const decorators = [
 
 // Set additional TailwindCSS theming classes
 document.querySelector('html').classList.add('h-full');
-document.body.classList.add('min-h-screen', 'bg-white', 'dark:bg-slate-800');
+document.body.classList.add('min-h-screen', 'bg-white', 'dark:bg-zinc-900');
